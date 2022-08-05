@@ -13,23 +13,22 @@ import (
 var ClientVar *mongo.Client
 
 func Connect() *mongo.Client {
-	fmt.Println("Connecting to the MongoDB server")
+	fmt.Printf("Connecting to the MongoDB server")
 
 	var url string = config.Cfg.MongoURL
 	clientOptions := options.Client().ApplyURI(url)
-	fmt.Println(url)
 
 	// Connect to MongoDB
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	ClientVar = client
 	if err != nil {
-		log.Fatalf(`Error in connecting to mongodb: %v`, err)
+		log.Printf(`Error in connecting to mongodb: %v`, err)
 	}
 
 	// Check the connection
 	err = client.Ping(context.TODO(), nil)
 	if err != nil {
-		log.Fatalf(`Error in pinging to database: %v`, err)
+		log.Printf(`Error in pinging to database: %v`, err)
 	}
 
 	fmt.Println("Connected to MongoDB!")
