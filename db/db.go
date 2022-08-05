@@ -23,12 +23,14 @@ func Connect() *mongo.Client {
 	ClientVar = client
 	if err != nil {
 		log.Printf(`Error in connecting to mongodb: %v`, err)
+		return nil
 	}
 
 	// Check the connection
 	err = client.Ping(context.TODO(), nil)
 	if err != nil {
 		log.Printf(`Error in pinging to database: %v`, err)
+		return nil
 	}
 
 	fmt.Println("Connected to MongoDB!")
