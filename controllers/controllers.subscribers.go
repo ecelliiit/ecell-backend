@@ -48,6 +48,7 @@ func (*SubscriberController) GetById(c *gin.Context) {
 	id, err := primitive.ObjectIDFromHex(idString)
 	if err != nil {
 		utils.SendResponse(c, 422, "invalid object id", nil)
+		return
 	}
 
 	result, err := repository.GetSubscriberById(id)
@@ -57,6 +58,7 @@ func (*SubscriberController) GetById(c *gin.Context) {
 			return
 		}
 		utils.SendResponse(c, 500, "Error in fetching data from db", nil)
+		return
 	}
 
 	utils.SendResponse(c, 200, "Susbcriber fetched successfully", result)
@@ -67,11 +69,13 @@ func (*SubscriberController) Delete(c *gin.Context) {
 	id, err := primitive.ObjectIDFromHex(idString)
 	if err != nil {
 		utils.SendResponse(c, 422, "invalid object id", nil)
+		return
 	}
 
 	err = repository.DeleteSubscriberByID(id)
 	if err != nil {
 		utils.SendResponse(c, 500, "Error in deleting data from db", nil)
+		return
 	}
 
 	utils.SendResponse(c, 200, "Susbcriber deleted successfully", nil)
@@ -82,6 +86,7 @@ func (*SubscriberController) MarkAsContacted(c *gin.Context) {
 	id, err := primitive.ObjectIDFromHex(idString)
 	if err != nil {
 		utils.SendResponse(c, 422, "invalid object id", nil)
+		return
 	}
 
 	result, err := repository.MarkAsContacted(id)
