@@ -25,9 +25,9 @@ var Cfg *Config
 func Load() {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatalf("Error in loading env: %v", err)
-		panic(1)
+		log.Fatalf("Error in loading env from file: %v", err)
 	}
+
 	Cfg = &Config{
 		Secret:   os.Getenv("SECRET"),
 		MongoURL: os.Getenv("MONGO_URI"),
