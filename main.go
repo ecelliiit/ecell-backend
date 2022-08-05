@@ -15,7 +15,6 @@ var engine *gin.Engine
 func init() {
 	config.Load()
 	db.Connect()
-	db.LoadCollections()
 	engine = routes.BuildRoutes()
 }
 

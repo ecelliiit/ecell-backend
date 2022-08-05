@@ -34,6 +34,7 @@ func Connect() *mongo.Client {
 	}
 
 	fmt.Println("Connected to MongoDB!")
+	LoadCollections()
 	return client
 }
 
