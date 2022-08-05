@@ -24,7 +24,7 @@ var Cfg *Config
 func Load() {
 	err := godotenv.Load()
 	if err != nil {
-		fmt.Println("Error in loading env from file: %v", err)
+		fmt.Printf("Error in loading env from file: %v", err)
 	}
 
 	Cfg = &Config{
