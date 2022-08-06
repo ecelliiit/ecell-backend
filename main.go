@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 
 	"github.com/ecelliiit/ecell-backend/config"
 	"github.com/ecelliiit/ecell-backend/db"
@@ -18,16 +17,12 @@ func init() {
 	engine = routes.BuildRoutes()
 }
 
-func ServerStatus(c *gin.Context) {
-	c.JSON(200, "Ecell backend is up and running!")
-}
-
 func main() {
 	engine.GET("/", func(c *gin.Context) {
 		c.JSON(200, "Ecell backend is up and running!")
 	})
 
-	err := http.ListenAndServe(fmt.Sprintf(":%v", config.Cfg.PORT), engine)
+	err := engine.Run(":" + config.Cfg.PORT)
 	if err != nil {
 		fmt.Printf("Error in starting server at port %v", config.Cfg.PORT)
 	}

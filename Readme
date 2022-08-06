@@ -1,0 +1,2 @@
+Read logs through -
+heroku logs --app=ecell-backend-shivansh --tail
