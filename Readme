@@ -1,2 +1,2 @@
 Read logs through -
-heroku logs --app=ecell-backend-shivansh --tail
+heroku logs --app=ecell-iits-backend --tail
